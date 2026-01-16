@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completar Pago - Bad Bunny</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pago-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 0;
+            position: relative;
+        }
+        .pago-header {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .pago-header h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .close-btn {
+            width: 40px;
+            height: 40px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pago-content {
+            background: white;
+            padding: 30px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .cbu-section {
+            background: #f0f8ff;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .cbu-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .cbu-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2196f3;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+        .copy-btn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .copy-btn:hover {
+            background: #1976d2;
+        }
+        .copy-btn.copied {
+            background: #4caf50;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .btn-descargar {
+            flex: 1;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-descargar:hover {
+            background: #27ae60;
+        }
+        .btn-descargar:disabled {
+            background: #bbb;
+            cursor: not-allowed;
+        }
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-input-label {
+            display: block;
+            padding: 12px;
+            background: #f5f5f5;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .file-input-label:hover {
+            background: #f0f0f0;
+            border-color: #999;
+        }
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+        .file-name {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="pago-container">
+        <div class="pago-header">
+            <h1>Completar Pago</h1>
+            <button class="close-btn" onclick="window.history.back()">✕</button>
+        </div>
+    </div>
+
+    <div class="pago-content">
+        <div class="success-message" id="successMsg">Formulario completado correctamente!</div>
+        <div class="error-message" id="errorMsg"></div>
+
+        <form id="pagoForm">
+            <!-- Datos Personales -->
+            <div class="form-section">
+                <h3>Tus Datos</h3>
+                
+                <div class="form-group">
+                    <label for="nombre">Nombre y Apellido *</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Juan Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Gmail *</label>
+                    <input type="email" id="email" name="email" placeholder="tu.email@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dni">DNI *</label>
+                    <input type="number" id="dni" name="dni" placeholder="12345678" required>
+                </div>
+            </div>
+
+            <!-- Comprobante de Transferencia -->
+            <div class="form-section">
+                <h3>Comprobante de Transferencia</h3>
+                
+                <div class="form-group">
+                    <label for="comprobante">Seleccionar archivo (Imagen o PDF) *</label>
+                    <div class="file-input-wrapper">
+                        <label class="file-input-label" for="comprobante">
+                            <div style="font-size: 24px; margin-bottom: 8px;">📁</div>
+                            <div>Haz clic o arrastra tu comprobante aquí</div>
+                        </label>
+                        <input type="file" id="comprobante" name="comprobante" accept="image/*,.pdf" required>
+                        <div class="file-name" id="fileName"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aviso de Billeteras Virtuales -->
+            <div class="form-section">
+                <h3>Métodos de Pago</h3>
+                
+                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <div style="font-weight: bold; color: #856404; margin-bottom: 8px;">Billeteras Virtuales Aceptadas</div>
+                    <p style="margin: 8px 0; color: #856404; font-size: 14px;">
+                        ✓ Mercado Pago (NO disponible - saturado)<br>
+                        ✓ Billetera Santa Cruz<br>
+                        ✓ Billetera Córdoba<br>
+                        ✓ Billetera de tu banco<br>
+                        ✓ Otras billeteras virtuales
+                    </p>
+                    <small style="color: #856404;">También aceptamos transferencias bancarias directas al CBU.</small>
+                </div>
+            </div>
+            <!-- CBU para Transferencia -->
+            <div class="form-section">
+                <h3>Datos para la Transferencia</h3>
+                
+                <div class="cbu-section">
+                    <div class="cbu-label">CBU</div>
+                    <div class="cbu-value" id="cbuDisplay">0000184305010025590764</div>
+                    <button type="button" class="copy-btn" onclick="copiarCBU()">Copiar CBU</button>
+                </div>
+
+                <p style="font-size: 12px; color: #666; margin-top: 15px;">
+                    <strong>Instrucciones:</strong> Realiza la transferencia al CBU indicado y sube el comprobante en el campo anterior. Una vez verificado, recibirás tu QR y los detalles de tu entrada.
+                </p>
+            </div>
+
+            <!-- Botón Descargar -->
+            <div class="button-group">
+                <button type="submit" class="btn-descargar" id="btnDescargar">Descargar QR y Detalles</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('pagoForm');
+        const fileInput = document.getElementById('comprobante');
+        const fileName = document.getElementById('fileName');
+        const successMsg = document.getElementById('successMsg');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // Mostrar nombre del archivo seleccionado
+        fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                fileName.textContent = 'Archivo: ' + this.files[0].name;
+            }
+        });
+
+        // Copiar CBU
+        function copiarCBU() {
+            const cbu = '0000184305010025590764';
+            navigator.clipboard.writeText(cbu).then(function() {
+                const btn = event.target;
+                btn.textContent = 'Copiado!';
+                setTimeout(function() {
+                    btn.textContent = 'Copiar CBU';
+                }, 2000);
+            });
+        }
+
+        // Enviar formulario
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const dni = document.getElementById('dni').value;
+            const comprobante = fileInput.files[0];
+
+            if (!nombre || !email || !dni || !comprobante) {
+                errorMsg.textContent = 'Por favor completa todos los campos';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            // Validar email
+            const emailRegex = /^[^\s@]+@gmail\.com$/;
+            if (!emailRegex.test(email)) {
+                errorMsg.textContent = 'Por favor ingresa un email de Gmail válido';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            // Validar DNI
+            if (dni.length < 7 || dni.length > 9) {
+                errorMsg.textContent = 'Por favor ingresa un DNI válido';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+
+            // Guardar datos
+            const datosCompra = {
+                nombre: nombre,
+                email: email,
+                dni: dni,
+                archivo: comprobante.name,
+                fecha: new Date().toLocaleString('es-AR')
+            };
+            localStorage.setItem('datosCompra', JSON.stringify(datosCompra));
+
+            // Mostrar mensaje de éxito
+            successMsg.style.display = 'block';
+            successMsg.textContent = 'Gracias ' + nombre + '! Tu compra fue procesada. Se te enviará un email con tu QR y los detalles de tu entrada.';
+
+            // Limpiar formulario después de 2 segundos
+            setTimeout(function() {
+                form.reset();
+                fileName.textContent = '';
+                // Ir a página de confirmación o volver
+                // window.location.href = 'index.html';
+            }, 2000);
+        });
+
+        // Mostrar datos de la entrada
+        function mostrarDatosEntrada() {
+            const entradaData = JSON.parse(localStorage.getItem('entradaSeleccionada') || '{}');
+            console.log('Entrada:', entradaData);
+        }
+
+        document.addEventListener('DOMContentLoaded', mostrarDatosEntrada);
+    </script>
+</body>
+</html>
