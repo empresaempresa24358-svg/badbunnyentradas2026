@@ -3,7 +3,7 @@ console.log("Página cargada correctamente.");
 
 // Precios base para todas las secciones
 const preciosBase = {
-    'Sivori Alta': 204.750,
+    'Sivori Alta': 110.050,
     'Campo Delantero': 160.000,
     'Campo General': 130.000
 };
@@ -12,9 +12,9 @@ const preciosBase = {
 function obtenerMultiplicador(cantidad) {
     const cantidadNum = parseInt(cantidad) || 1;
     if (cantidadNum === 2) {
-        return 1.80; // Aumento de 80%
+        return 1.8178100863244; // Aumento de 80%
     } else if (cantidadNum === 3) {
-        return 2.30; // Aumento de 130%
+        return 2.8178100863244; // Aumento de 130%
     }
     return 1; // Sin aumento para 1 entrada
 }

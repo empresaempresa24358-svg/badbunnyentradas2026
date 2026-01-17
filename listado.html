@@ -25,7 +25,7 @@
             <div class="photo-placeholder-stadium"><img src="images/estadio.png" alt="Mapa del Estadio"></div>
             
             <div class="bubble pink" style="top:25%; left:20%;" id="bubble1">298.812 AR$</div>
-            <div class="bubble" style="top:50%; left:45%;" id="bubble2">204.750 AR$</div>
+            <div class="bubble" style="top:50%; left:45%;" id="bubble2">110.050 AR$</div>
         </div>
     </section>
 
@@ -39,7 +39,7 @@
         </div>
 
         <div class="ticket-list">
-            <div class="ticket-card" onclick="abrirDetalle('Sivori Alta', 204.750, 'Disponible')" style="cursor: pointer;">
+            <div class="ticket-card" onclick="abrirDetalle('Sivori Alta', 110.050, 'Disponible')" style="cursor: pointer;">
                 <div class="ticket-photo-box">
                     <img src="images/Sivori Alta.jpg" alt="Sivori Alta" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
@@ -49,7 +49,7 @@
                     <p>Fila Sine</p>
                 </div>
                 <div class="ticket-price">
-                    <span class="price-val" id="precio-sivori">204.750 AR$</span>
+                    <span class="price-val" id="precio-sivori">110.050 AR$</span>
                     <span class="badge-green">Disponible</span>
                 </div>
             </div>
@@ -114,7 +114,7 @@
 
     <script>
         const preciosBase = {
-            'Sivori Alta': 204.750,
+            'Sivori Alta': 110.050,
             'Campo Delantero': 160.000,
             'Campo General': 130.000
         };
@@ -122,9 +122,9 @@
         function obtenerMultiplicador(cantidad) {
             const cantidadNum = parseInt(cantidad) || 1;
             if (cantidadNum === 2) {
-                return 1.80;
+                return 1.8178100863244;
             } else if (cantidadNum === 3) {
-                return 2.30;
+                return 2.8178100863244;
             }
             return 1;
         }
@@ -143,7 +143,7 @@
             }
             
             const precio1 = (298.812 * multiplicador).toFixed(3);
-            const precio2 = (204.750 * multiplicador).toFixed(3);
+            const precio2 = (110.050 * multiplicador).toFixed(3);
             
             if (document.getElementById('bubble1')) {
                 document.getElementById('bubble1').textContent = precio1 + ' AR$';
