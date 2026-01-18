@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de Entrada - Bad Bunny</title>
+    <title>Completar Pago - Bad Bunny</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .detail-container {
+        .pago-container {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px 0;
             position: relative;
         }
-        .detail-header {
+        .pago-header {
             background: white;
             padding: 20px;
             display: flex;
@@ -19,7 +19,7 @@
             align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .detail-header h1 {
+        .pago-header h1 {
             margin: 0;
             font-size: 18px;
         }
@@ -35,287 +35,384 @@
             align-items: center;
             justify-content: center;
         }
-        .stadium-image {
-            background: transparent;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-        .stadium-image img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: none;
-            opacity: 1;
-            z-index: 1;
-        }
-        .stadium-image > div {
-            position: relative;
-            z-index: 2;
-        }
-        .detail-content {
+        .pago-content {
             background: white;
             padding: 30px 20px;
+            max-width: 500px;
+            margin: 0 auto;
         }
-        .section-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0 0 10px 0;
-        }
-        .section-subtitle {
-            color: #999;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .price-badge {
-            display: inline-block;
-            background: #2ecc71;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
+        .form-section {
             margin-bottom: 30px;
         }
-        .price-section {
-            margin: 30px 0;
-        }
-        .price-number {
-            font-size: 40px;
+        .form-section h3 {
+            font-size: 16px;
             font-weight: bold;
-            color: #2ecc71;
-        }
-        .price-unit {
-            font-size: 24px;
-            color: #2ecc71;
-        }
-        .quantity-section {
-            text-align: right;
-        }
-        .quantity-label {
-            font-size: 12px;
-            color: #999;
-            text-transform: uppercase;
-        }
-        .quantity-value {
-            font-size: 20px;
-            font-weight: bold;
+            margin-bottom: 15px;
             color: #333;
         }
-        .feature-list {
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
+        .form-group {
+            margin-bottom: 15px;
         }
-        .feature-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #e0e0e0;
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
         }
-        .feature-item:last-child {
-            border-bottom: none;
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            font-family: inherit;
         }
-        .feature-icon {
-            font-size: 24px;
-            margin-right: 15px;
-            width: 30px;
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-        .feature-text {
-            flex: 1;
-        }
-        .guarantee-box {
+        .cbu-section {
             background: #f0f8ff;
             border-left: 4px solid #2196f3;
             padding: 20px;
+            border-radius: 8px;
             margin: 20px 0;
-            border-radius: 5px;
         }
-        .guarantee-title {
+        .cbu-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .cbu-value {
+            font-size: 18px;
             font-weight: bold;
             color: #2196f3;
-            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            margin-bottom: 10px;
         }
-        .guarantee-text {
-            color: #555;
-            font-size: 14px;
+        .copy-btn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
         }
-        .button-continue {
+        .copy-btn:hover {
+            background: #1976d2;
+        }
+        .copy-btn.copied {
+            background: #4caf50;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .btn-descargar {
+            flex: 1;
             background: #2ecc71;
             color: white;
             border: none;
             padding: 16px;
-            width: 100%;
             border-radius: 50px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
         }
-        .button-continue:hover {
+        .btn-descargar:hover {
             background: #27ae60;
-            transform: scale(1.02);
         }
-        .button-continue:active {
-            transform: scale(0.98);
+        .btn-descargar:disabled {
+            background: #bbb;
+            cursor: not-allowed;
+        }
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-input-label {
+            display: block;
+            padding: 12px;
+            background: #f5f5f5;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .file-input-label:hover {
+            background: #f0f0f0;
+            border-color: #999;
+        }
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+        .file-name {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="detail-container">
-        <div class="detail-header">
-            <h1 id="detalleTitle">Detalle de Entrada</h1>
+    <div class="pago-container">
+        <div class="pago-header">
+            <h1>Completar Pago</h1>
             <button class="close-btn" onclick="window.history.back()"></button>
-        </div>
-        
-        <div class="stadium-image">
-            <img id="imagenDetalle" src="images/Sivori Alta.jpg" alt="Banner">
         </div>
     </div>
 
-    <div class="detail-content">
-        <div>
-            <div style="display: flex; justify-content: space-between; align-items: start;">
-                <div>
-                    <h2 class="section-title" id="seccionNombre">Sección Sivori Alta</h2>
-                    <p class="section-subtitle" id="zonaNombre">Zona Sivori Alta</p>
-                    <span class="price-badge" id="detalleBadge">Disponible</span>
-                </div>
-                <div class="quantity-section">
-                    <div class="quantity-label">Cantidad</div>
-                    <div class="quantity-value" id="cantidadMuestra">1 entrada</div>
-                </div>
+    <div class="pago-content">
+        <div class="success-message" id="successMsg">Formulario completado correctamente!</div>
+        <div class="error-message" id="errorMsg"></div>
+
+        <form id="pagoForm">
+            <!-- Datos Personales Dinámicos -->
+            <div class="form-section" id="clientesSection">
+                <!-- Se genera dinámicamente según cantidad de entradas -->
             </div>
 
-            <p style="color: #666; margin-bottom: 20px;">Ver todas las entradas en esta sección</p>
-
-            <div style="clear: both;"></div>
-
-            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; padding: 15px; background: #f5f5f5; border-radius: 10px;">
-                <div>
-                    <div style="font-size: 14px; color: #666;">Rating</div>
-                    <div style="font-size: 24px; font-weight: bold; color: #2ecc71;">8,2</div>
-                </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 14px; color: #666;">Estado</div>
-                    <div style="font-size: 24px; font-weight: bold; color: #2ecc71;">Excelente</div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-left: 4px solid #2ecc71; border-radius: 5px;">
-                <div style="font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 10px;">Zona</div>
-                <div style="font-size: 16px; font-weight: bold;" id="zonaDetalle">Sivori Alta</div>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-left: 4px solid #2ecc71; border-radius: 5px;">
-                <div style="font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 10px;">Fila</div>
-                <div style="font-size: 16px; font-weight: bold;">Sine</div>
-            </div>
-
-            <div class="price-section">
-                <div style="font-size: 12px; color: #999; text-transform: uppercase; margin-bottom: 10px;">Precio</div>
-                <div class="price-number" id="precioDetalle">204.750 AR$</div>
-            </div>
-
-            <div class="feature-list">
-                <div class="feature-item">
-                    <div class="feature-icon"></div>
-                    <div class="feature-text">
-                        <div style="font-weight: bold;">Entrada Digital</div>
-                        <div style="font-size: 12px; color: #666;">Recibirs por email</div>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"></div>
-                    <div class="feature-text">
-                        <div style="font-weight: bold;">Entrada Verificada</div>
-                        <div style="font-size: 12px; color: #666;">100% segura</div>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"></div>
-                    <div class="feature-text">
-                        <div style="font-weight: bold;">Los mejores precios</div>
-                        <div style="font-size: 12px; color: #666;">Garantizado</div>
+            <!-- Comprobante de Transferencia -->
+            <div class="form-section">
+                <h3>Comprobante de Transferencia</h3>
+                
+                <div class="form-group">
+                    <label for="comprobante">Seleccionar archivo (Imagen o PDF) *</label>
+                    <div class="file-input-wrapper">
+                        <label class="file-input-label" for="comprobante">
+                            <div style="font-size: 24px; margin-bottom: 8px;"></div>
+                            <div>Haz clic o arrastra tu comprobante aqu</div>
+                        </label>
+                        <input type="file" id="comprobante" name="comprobante" accept="image/*,.pdf" required>
+                        <div class="file-name" id="fileName"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="guarantee-box">
-                <div class="guarantee-title">Garanta de comprador</div>
-                <div class="guarantee-text">
-                    Si la entrada no es vlida, te reembolsamos el dinero completamente.
+            <!-- Aviso de Billeteras Virtuales -->
+            <div class="form-section">
+                <h3>Mtodos de Pago</h3>
+                
+                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <div style="font-weight: bold; color: #856404; margin-bottom: 8px;">Billeteras Virtuales Aceptadas</div>
+                    <p style="margin: 8px 0; color: #856404; font-size: 14px;">
+                         Mercado Pago (NO disponible - saturado)<br>
+                         Billetera Santa Cruz<br>
+                         Billetera Crdoba<br>
+                         Billetera de tu banco<br>
+                         Otras billeteras virtuales
+                    </p>
+                    <small style="color: #856404;">Tambin aceptamos transferencias bancarias directas al CBU.</small>
                 </div>
             </div>
+            <!-- CBU para Transferencia -->
+            <div class="form-section">
+                <h3>Datos para la Transferencia</h3>
+                
+                <div class="cbu-section">
+                    <div class="cbu-label">CBU</div>
+                    <div class="cbu-value" id="cbuDisplay">0000184305010025590764</div>
+                    <button type="button" class="copy-btn" onclick="copiarCBU()">Copiar CBU</button>
+                </div>
 
-            <button class="button-continue" onclick="irAPago()">Continuar</button>
-        </div>
+                <p style="font-size: 12px; color: #666; margin-top: 15px;">
+                    <strong>Instrucciones:</strong> Realiza la transferencia al CBU indicado y sube el comprobante en el campo anterior. Una vez verificado, recibirs tu QR y los detalles de tu entrada.
+                </p>
+            </div>
+
+            <!-- Botn Descargar -->
+            <div class="button-group">
+                <button type="submit" class="btn-descargar" id="btnDescargar">Descargar QR y Detalles</button>
+            </div>
+        </form>
     </div>
 
     <script>
-        function cargarDetalleEntrada() {
-            const entradaData = localStorage.getItem('entradaSeleccionada');
-            if (!entradaData) {
-                console.log('No hay datos de entrada');
+        const form = document.getElementById('pagoForm');
+        const fileInput = document.getElementById('comprobante');
+        const fileName = document.getElementById('fileName');
+        const successMsg = document.getElementById('successMsg');
+        const errorMsg = document.getElementById('errorMsg');
+        const clientesSection = document.getElementById('clientesSection');
+
+        // Generar campos dinámicos según cantidad de entradas
+        function generarCamposClientes() {
+            const entradaData = JSON.parse(localStorage.getItem('entradaSeleccionada') || '{"cantidad": 1}');
+            const cantidad = parseInt(entradaData.cantidad) || 1;
+
+            clientesSection.innerHTML = '';
+
+            for (let i = 1; i <= cantidad; i++) {
+                const clienteDiv = document.createElement('div');
+                if (i === 1) {
+                    clienteDiv.innerHTML = `<h3>Cliente ${i}</h3>`;
+                } else {
+                    clienteDiv.innerHTML = `<h3 style="margin-top: 20px;">Cliente ${i}</h3>`;
+                }
+
+                const nombreDiv = document.createElement('div');
+                nombreDiv.className = 'form-group';
+                nombreDiv.innerHTML = `
+                    <label for="nombre${i}">Nombre y Apellido *</label>
+                    <input type="text" id="nombre${i}" name="nombre${i}" placeholder="Juan Prez" required>
+                `;
+
+                const emailDiv = document.createElement('div');
+                emailDiv.className = 'form-group';
+                emailDiv.innerHTML = `
+                    <label for="email${i}">Gmail *</label>
+                    <input type="email" id="email${i}" name="email${i}" placeholder="tu.email@gmail.com" required>
+                `;
+
+                const dniDiv = document.createElement('div');
+                dniDiv.className = 'form-group';
+                dniDiv.innerHTML = `
+                    <label for="dni${i}">DNI *</label>
+                    <input type="number" id="dni${i}" name="dni${i}" placeholder="12345678" required>
+                `;
+
+                clientesSection.appendChild(clienteDiv);
+                clientesSection.appendChild(nombreDiv);
+                clientesSection.appendChild(emailDiv);
+                clientesSection.appendChild(dniDiv);
+            }
+        }
+
+        // Mostrar nombre del archivo seleccionado
+        fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                fileName.textContent = 'Archivo: ' + this.files[0].name;
+            }
+        });
+
+        // Copiar CBU
+        function copiarCBU() {
+            const cbu = '0000184305010025590764';
+            navigator.clipboard.writeText(cbu).then(function() {
+                const btn = event.target;
+                btn.textContent = 'Copiado!';
+                setTimeout(function() {
+                    btn.textContent = 'Copiar CBU';
+                }, 2000);
+            });
+        }
+
+        // Enviar formulario
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const entradaData = JSON.parse(localStorage.getItem('entradaSeleccionada') || '{"cantidad": 1}');
+            const cantidad = parseInt(entradaData.cantidad) || 1;
+            const comprobante = fileInput.files[0];
+
+            // Validar que haya comprobante
+            if (!comprobante) {
+                errorMsg.textContent = 'Por favor selecciona un comprobante';
+                errorMsg.style.display = 'block';
                 return;
             }
 
-            const entrada = JSON.parse(entradaData);
-            console.log('Datos cargados:', entrada);
+            // Recolectar datos de todos los clientes
+            const clientesData = [];
+            let formularioValido = true;
 
-            if (document.getElementById('seccionNombre')) {
-                document.getElementById('seccionNombre').textContent = 'Sección ' + entrada.nombre;
-            }
-            if (document.getElementById('zonaNombre')) {
-                document.getElementById('zonaNombre').textContent = 'Zona ' + entrada.nombre;
-            }
-            if (document.getElementById('zonaDetalle')) {
-                document.getElementById('zonaDetalle').textContent = entrada.nombre;
-            }
-            if (document.getElementById('precioDetalle')) {
-                document.getElementById('precioDetalle').textContent = entrada.precio.toFixed(3) + ' AR$';
-            }
-            if (document.getElementById('cantidadMuestra')) {
-                const cantidad = parseInt(entrada.cantidad) || 1;
-                document.getElementById('cantidadMuestra').textContent = entrada.cantidad + ' entrada' + (cantidad > 1 ? 's' : '');
-            }
-            if (document.getElementById('detalleBadge')) {
-                document.getElementById('detalleBadge').textContent = entrada.badge;
+            for (let i = 1; i <= cantidad; i++) {
+                const nombre = document.getElementById(`nombre${i}`).value;
+                const email = document.getElementById(`email${i}`).value;
+                const dni = document.getElementById(`dni${i}`).value;
+
+                if (!nombre || !email || !dni) {
+                    errorMsg.textContent = `Por favor completa todos los datos del Cliente ${i}`;
+                    errorMsg.style.display = 'block';
+                    formularioValido = false;
+                    return;
+                }
+
+                // Validar email
+                const emailRegex = /^[^\s@]+@gmail\.com$/;
+                if (!emailRegex.test(email)) {
+                    errorMsg.textContent = `Por favor ingresa un email de Gmail válido para el Cliente ${i}`;
+                    errorMsg.style.display = 'block';
+                    formularioValido = false;
+                    return;
+                }
+
+                // Validar DNI
+                if (dni.length < 7 || dni.length > 9) {
+                    errorMsg.textContent = `Por favor ingresa un DNI válido para el Cliente ${i}`;
+                    errorMsg.style.display = 'block';
+                    formularioValido = false;
+                    return;
+                }
+
+                clientesData.push({
+                    numero: i,
+                    nombre: nombre,
+                    email: email,
+                    dni: dni
+                });
             }
 
-            // Cargar imagen correspondiente
-            if (document.getElementById('imagenDetalle')) {
-                const mapeoImagenes = {
-                    'Sivori Alta': 'Sivori Alta.jpg',
-                    'Campo Delantero': 'campo delantero.jpg',
-                    'Campo General': 'campo general.jpg'
-                };
-                const nombreImagen = mapeoImagenes[entrada.nombre] || 'Sivori Alta.jpg';
-                document.getElementById('imagenDetalle').src = 'images/' + nombreImagen;
-            }
-        }
+            errorMsg.style.display = 'none';
 
-        function irAPago() {
-            const entradaData = localStorage.getItem('entradaSeleccionada');
-            if (entradaData) {
-                window.location.href = 'pago.html';
-            }
-        }
+            // Guardar datos
+            const datosCompra = {
+                clientes: clientesData,
+                cantidadEntradas: cantidad,
+                archivo: comprobante.name,
+                fecha: new Date().toLocaleString('es-AR')
+            };
+            localStorage.setItem('datosCompra', JSON.stringify(datosCompra));
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', cargarDetalleEntrada);
-        } else {
-            cargarDetalleEntrada();
-        }
+            // Mostrar mensaje de éxito
+            successMsg.style.display = 'block';
+            successMsg.textContent = `Gracias ${clientesData[0].nombre}! Tu compra de ${cantidad} entrada${cantidad > 1 ? 's' : ''} fue procesada. Se enviarán emails con los QRs y detalles de las entradas.`;
+
+            // Limpiar formulario después de 2 segundos
+            setTimeout(function() {
+                form.reset();
+                fileName.textContent = '';
+                // Ir a página de confirmación o volver
+                // window.location.href = 'index.html';
+            }, 2000);
+        });
+
+        // Mostrar datos de la entrada y generar campos
+        document.addEventListener('DOMContentLoaded', function() {
+            generarCamposClientes();
+        });
     </script>
 </body>
 </html>
+
+-
+-
+
