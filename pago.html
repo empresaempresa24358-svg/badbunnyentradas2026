@@ -6,27 +6,48 @@
     <title>Completar Pago - Bad Bunny</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f7fa;
+        }
+
         .pago-container {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px 0;
             position: relative;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
         }
+
         .pago-header {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
         }
+
         .pago-header h1 {
             margin: 0;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .close-btn {
             width: 40px;
             height: 40px;
-            background: #f0f0f0;
+            background: #f0f2f5;
             border: none;
             border-radius: 50%;
             font-size: 24px;
@@ -34,151 +55,233 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
         }
+
+        .close-btn:hover {
+            background: #e4e6eb;
+            transform: scale(1.05);
+        }
+
         .pago-content {
             background: white;
-            padding: 30px 20px;
-            max-width: 500px;
-            margin: 0 auto;
+            padding: 40px 20px;
+            max-width: 550px;
+            margin: -20px auto 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+            position: relative;
+            z-index: 10;
         }
+
         .form-section {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
+
         .form-section h3 {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        .form-section h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
+
         .form-group label {
             display: block;
             font-size: 14px;
             font-weight: 500;
-            margin-bottom: 8px;
-            color: #333;
+            margin-bottom: 10px;
+            color: #374151;
         }
+
         .form-group input[type="text"],
         .form-group input[type="email"],
         .form-group input[type="number"],
         .form-group input[type="file"] {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
             font-size: 14px;
             box-sizing: border-box;
             font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f9fafb;
         }
+
         .form-group input:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
         }
+
         .cbu-section {
-            background: #f0f8ff;
-            border-left: 4px solid #2196f3;
-            padding: 20px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #f5efff 100%);
+            border: 2px solid #e0e7ff;
+            padding: 24px;
+            border-radius: 12px;
             margin: 20px 0;
         }
+
         .cbu-label {
             font-size: 12px;
-            color: #666;
+            color: #6b7280;
             text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 10px;
+            font-weight: 600;
         }
+
         .cbu-value {
-            font-size: 18px;
-            font-weight: bold;
-            color: #2196f3;
+            font-size: 20px;
+            font-weight: 700;
+            color: #667eea;
             font-family: 'Courier New', monospace;
             word-break: break-all;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
+            letter-spacing: 1px;
         }
+
         .copy-btn {
-            background: #2196f3;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            font-size: 12px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
+
         .copy-btn:hover {
-            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
+
         .copy-btn.copied {
-            background: #4caf50;
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         }
+
         .button-group {
             display: flex;
-            gap: 10px;
-            margin-top: 30px;
+            gap: 12px;
+            margin-top: 35px;
         }
+
         .btn-descargar {
             flex: 1;
-            background: #2ecc71;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
             padding: 16px;
-            border-radius: 50px;
+            border-radius: 10px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
         }
+
         .btn-descargar:hover {
-            background: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
+
+        .btn-descargar:active {
+            transform: translateY(-1px);
+        }
+
         .btn-descargar:disabled {
-            background: #bbb;
+            background: #d1d5db;
             cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
         }
+
         .file-input-wrapper {
             position: relative;
             overflow: hidden;
             display: inline-block;
             width: 100%;
         }
+
         .file-input-label {
             display: block;
-            padding: 12px;
-            background: #f5f5f5;
-            border: 2px dashed #ddd;
-            border-radius: 8px;
+            padding: 28px 16px;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
         }
+
         .file-input-label:hover {
-            background: #f0f0f0;
-            border-color: #999;
+            background: linear-gradient(135deg, #f0f8ff 0%, #f5efff 100%);
+            border-color: #667eea;
+            color: #667eea;
         }
+
+        .file-input-label:active {
+            background: #e5e7eb;
+        }
+
         .file-input-wrapper input[type="file"] {
             display: none;
         }
+
         .file-name {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
+            font-size: 13px;
+            color: #10b981;
+            margin-top: 10px;
+            font-weight: 500;
         }
+
         .success-message {
-            background: #d4edda;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             color: #155724;
-            padding: 12px;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             display: none;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 10px rgba(40, 167, 69, 0.1);
+            font-weight: 500;
+            font-size: 14px;
         }
+
         .error-message {
-            background: #f8d7da;
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
             color: #721c24;
-            padding: 12px;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             display: none;
+            border-left: 4px solid #dc3545;
+            box-shadow: 0 2px 10px rgba(220, 53, 69, 0.1);
+            font-weight: 500;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -201,15 +304,16 @@
             </div>
 
             <!-- Comprobante de Transferencia -->
-            <div class="form-section">
+            <div class="form-section" id="comprobanteSection" style="display: none;">
                 <h3>Comprobante de Transferencia</h3>
                 
                 <div class="form-group">
                     <label for="comprobante">Seleccionar archivo (Imagen o PDF) *</label>
                     <div class="file-input-wrapper">
                         <label class="file-input-label" for="comprobante">
-                            <div style="font-size: 24px; margin-bottom: 8px;"></div>
-                            <div>Haz clic o arrastra tu comprobante aqu</div>
+                            <div style="font-size: 32px; margin-bottom: 12px;">📄</div>
+                            <div style="font-size: 15px; font-weight: 600;">Haz clic o arrastra tu comprobante aquí</div>
+                            <div style="font-size: 12px; color: #9ca3af; margin-top: 6px;">PNG, JPG o PDF (máx. 10MB)</div>
                         </label>
                         <input type="file" id="comprobante" name="comprobante" accept="image/*,.pdf" required>
                         <div class="file-name" id="fileName"></div>
@@ -218,23 +322,23 @@
             </div>
 
             <!-- Aviso de Billeteras Virtuales -->
-            <div class="form-section">
-                <h3>Mtodos de Pago</h3>
+            <div class="form-section" id="metodosSection" style="display: none;">
+                <h3>Métodos de Pago</h3>
                 
-                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 8px; margin: 15px 0;">
-                    <div style="font-weight: bold; color: #856404; margin-bottom: 8px;">Billeteras Virtuales Aceptadas</div>
-                    <p style="margin: 8px 0; color: #856404; font-size: 14px;">
-                         Mercado Pago (NO disponible - saturado)<br>
-                         Billetera Santa Cruz<br>
-                         Billetera Crdoba<br>
-                         Billetera de tu banco<br>
-                         Otras billeteras virtuales
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff9e6 100%); border-left: 4px solid #ffc107; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                    <div style="font-weight: 600; color: #856404; margin-bottom: 12px; font-size: 15px;">💳 Billeteras Virtuales Aceptadas</div>
+                    <p style="margin: 8px 0; color: #856404; font-size: 14px; line-height: 1.6;">
+                         • Mercado Pago (NO disponible - saturado)<br>
+                         • Billetera de tu banco<br>
+                         • Otras billeteras virtuales
                     </p>
-                    <small style="color: #856404;">Tambin aceptamos transferencias bancarias directas al CBU.</small>
+                    <div style="color: #856404; font-size: 13px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(133, 100, 4, 0.2);">
+                        🏦 También aceptamos transferencias bancarias directas al CBU.
+                    </div>
                 </div>
             </div>
             <!-- CBU para Transferencia -->
-            <div class="form-section">
+            <div class="form-section" id="cbuSection" style="display: none;">
                 <h3>Datos para la Transferencia</h3>
                 
                 <div class="cbu-section">
@@ -249,7 +353,7 @@
             </div>
 
             <!-- Botn Descargar -->
-            <div class="button-group">
+            <div class="button-group" id="buttonGroup" style="display: none;">
                 <button type="submit" class="btn-descargar" id="btnDescargar">Descargar QR y Detalles</button>
             </div>
         </form>
@@ -262,6 +366,64 @@
         const successMsg = document.getElementById('successMsg');
         const errorMsg = document.getElementById('errorMsg');
         const clientesSection = document.getElementById('clientesSection');
+        const comprobanteSection = document.getElementById('comprobanteSection');
+        const metodosSection = document.getElementById('metodosSection');
+        const cbuSection = document.getElementById('cbuSection');
+        const buttonGroup = document.getElementById('buttonGroup');
+
+        // Validar y continuar
+        function validarYContinuar() {
+            const entradaData = JSON.parse(localStorage.getItem('entradaSeleccionada') || '{"cantidad": 1}');
+            const cantidad = parseInt(entradaData.cantidad) || 1;
+
+            errorMsg.style.display = 'none';
+
+            // Validar todos los clientes
+            for (let i = 1; i <= cantidad; i++) {
+                const nombre = document.getElementById(`nombre${i}`).value;
+                const email = document.getElementById(`email${i}`).value;
+                const dni = document.getElementById(`dni${i}`).value;
+                const telefono = document.getElementById(`telefono${i}`).value;
+
+                if (!nombre || !email || !dni || !telefono) {
+                    errorMsg.textContent = `Por favor completa todos los datos del Cliente ${i}`;
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+
+                // Validar email
+                const emailRegex = /^[^\s@]+@gmail\.com$/;
+                if (!emailRegex.test(email)) {
+                    errorMsg.textContent = `Por favor ingresa un email de Gmail válido para el Cliente ${i}`;
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+
+                // Validar DNI
+                if (dni.length < 7 || dni.length > 9) {
+                    errorMsg.textContent = `Por favor ingresa un DNI válido para el Cliente ${i}`;
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+
+                // Validar teléfono
+                if (telefono.length < 6) {
+                    errorMsg.textContent = `Por favor ingresa un teléfono válido para el Cliente ${i}`;
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+            }
+
+            // Si todo es válido, mostrar las secciones siguientes
+            comprobanteSection.style.display = 'block';
+            metodosSection.style.display = 'block';
+            cbuSection.style.display = 'block';
+
+            // Scroll hacia abajo
+            setTimeout(() => {
+                comprobanteSection.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
 
         // Generar campos dinámicos según cantidad de entradas
         function generarCamposClientes() {
@@ -299,11 +461,28 @@
                     <input type="number" id="dni${i}" name="dni${i}" placeholder="12345678" required>
                 `;
 
+                const telefonoDiv = document.createElement('div');
+                telefonoDiv.className = 'form-group';
+                telefonoDiv.innerHTML = `
+                    <label for="telefono${i}">Número de Teléfono *</label>
+                    <input type="text" id="telefono${i}" name="telefono${i}" placeholder="2345678" required>
+                `;
+
                 clientesSection.appendChild(clienteDiv);
                 clientesSection.appendChild(nombreDiv);
                 clientesSection.appendChild(emailDiv);
                 clientesSection.appendChild(dniDiv);
+                clientesSection.appendChild(telefonoDiv);
             }
+
+            // Agregar botón Continuar después de los clientes
+            const btnContinuar = document.createElement('button');
+            btnContinuar.type = 'button';
+            btnContinuar.className = 'btn-descargar';
+            btnContinuar.style.marginTop = '20px';
+            btnContinuar.textContent = 'Continuar';
+            btnContinuar.onclick = validarYContinuar;
+            clientesSection.parentElement.insertBefore(btnContinuar, clientesSection.nextSibling);
         }
 
         // Mostrar nombre del archivo seleccionado
@@ -348,8 +527,9 @@
                 const nombre = document.getElementById(`nombre${i}`).value;
                 const email = document.getElementById(`email${i}`).value;
                 const dni = document.getElementById(`dni${i}`).value;
+                const telefono = document.getElementById(`telefono${i}`).value;
 
-                if (!nombre || !email || !dni) {
+                if (!nombre || !email || !dni || !telefono) {
                     errorMsg.textContent = `Por favor completa todos los datos del Cliente ${i}`;
                     errorMsg.style.display = 'block';
                     formularioValido = false;
@@ -373,11 +553,20 @@
                     return;
                 }
 
+                // Validar teléfono
+                if (telefono.length < 6) {
+                    errorMsg.textContent = `Por favor ingresa un teléfono válido para el Cliente ${i}`;
+                    errorMsg.style.display = 'block';
+                    formularioValido = false;
+                    return;
+                }
+
                 clientesData.push({
                     numero: i,
                     nombre: nombre,
                     email: email,
-                    dni: dni
+                    dni: dni,
+                    telefono: telefono
                 });
             }
 
@@ -391,6 +580,9 @@
                 fecha: new Date().toLocaleString('es-AR')
             };
             localStorage.setItem('datosCompra', JSON.stringify(datosCompra));
+
+            // Mostrar botón de descargar
+            buttonGroup.style.display = 'flex';
 
             // Mostrar mensaje de éxito
             successMsg.style.display = 'block';
