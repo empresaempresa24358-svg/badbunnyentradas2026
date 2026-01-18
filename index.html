@@ -94,7 +94,7 @@
         <h2 class="recommendations-title">Recomendaciones</h2>
         <div class="recommendations-container">
             <div class="recommendation-video-card" onclick="abrirVideoModal(event)" style="cursor: pointer;">
-                <video width="100%" height="100%" style="border-radius: 15px; object-fit: cover; cursor: pointer;" onclick="if(this.paused) this.play(); else this.pause();">
+                <video width="100%" height="100%" style="border-radius: 15px; object-fit: cover; cursor: pointer;" onclick="descargarVideo('videos/tk1.mp4')">
                     <source src="videos/tk1.mp4" type="video/mp4">
                     Tu navegador no soporta video HTML5.
                 </video>
@@ -103,7 +103,7 @@
                 </div>
             </div>
             <div class="recommendation-video-card" onclick="abrirVideoModal(event)" style="cursor: pointer;">
-                <video width="100%" height="100%" style="border-radius: 15px; object-fit: cover; cursor: pointer;" onclick="if(this.paused) this.play(); else this.pause();">
+                <video width="100%" height="100%" style="border-radius: 15px; object-fit: cover; cursor: pointer;" onclick="descargarVideo('videos/tk2.mp4')">
                     <source src="videos/tk2.mp4" type="video/mp4">
                     Tu navegador no soporta video HTML5.
                 </video>
@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="recommendation-video-card" onclick="abrirVideoModal(event)" style="cursor: pointer;">
-                <video width="100%" height="100%" style="border-radius: 15px; object-fit: cover; cursor: pointer;" onclick="if(this.paused) this.play(); else this.pause();">
+                <video width="100%" height="100%" style="border-radius: 15px; object-fit: cover; cursor: pointer;" onclick="descargarVideo('videos/tk3.mp4')">
                     <source src="videos/tk3.mp4" type="video/mp4">
                     Tu navegador no soporta video HTML5.
                 </video>
@@ -300,6 +300,16 @@
             }
         }
 
+        // Función para descargar video
+        function descargarVideo(videoPath) {
+            const link = document.createElement('a');
+            link.href = videoPath;
+            link.download = videoPath.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         // Manejo de imagen grande
         function abrirImagenGrande() {
             alert('Función disponible próximamente');
@@ -323,6 +333,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
