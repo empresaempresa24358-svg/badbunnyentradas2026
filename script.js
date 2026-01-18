@@ -89,3 +89,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// ============ FUNCIONES PARA MODAL DE IMÁGENES ============
+function abrirImageModal(imagenSrc) {
+    // Crear modal si no existe
+    if (!document.getElementById('imageModal')) {
+        const modal = document.createElement('div');
+        modal.id = 'imageModal';
+        modal.className = 'image-modal';
+        modal.innerHTML = 
+            <div class="image-modal-content">
+                <button class="modal-close-btn" onclick="cerrarImageModal()">&times;</button>
+                <img id="modalImage" src="" alt="Imagen ampliada" style="max-width: 100%; max-height: 90vh; object-fit: contain;">
+            </div>
+        ;
+        document.body.appendChild(modal);
+    }
+    
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    modalImage.src = imagenSrc;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function cerrarImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal de imagen al hacer clic en el fondo
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('click', function(event) {
+        const imageModal = document.getElementById('imageModal');
+        if (imageModal && event.target === imageModal) {
+            cerrarImageModal();
+        }
+    });
+});
