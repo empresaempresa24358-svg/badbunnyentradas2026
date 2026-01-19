@@ -352,9 +352,13 @@
                 </p>
             </div>
 
+            <p style="font-size: 14px; color: #dc3545; margin-top: 20px; margin-bottom: 15px; text-align: center; display: none; font-weight: 600; background: rgba(220, 53, 69, 0.1); padding: 12px; border-radius: 8px; border-left: 4px solid #dc3545;" id="instruccionesFinalizarText">
+                ⚠️ Solo presiona Finalizar una vez subido el comprobante
+            </p>
+
             <!-- Botn Descargar -->
             <div class="button-group" id="buttonGroup" style="display: none;">
-                <button type="submit" class="btn-descargar" id="btnDescargar">Descargar QR y Detalles</button>
+                <button type="submit" class="btn-descargar" id="btnDescargar">Finalizar</button>
             </div>
         </form>
     </div>
@@ -370,6 +374,7 @@
         const metodosSection = document.getElementById('metodosSection');
         const cbuSection = document.getElementById('cbuSection');
         const buttonGroup = document.getElementById('buttonGroup');
+        const instruccionesFinalizarText = document.getElementById('instruccionesFinalizarText');
 
         // Validar y continuar
         function validarYContinuar() {
@@ -418,6 +423,8 @@
             comprobanteSection.style.display = 'block';
             metodosSection.style.display = 'block';
             cbuSection.style.display = 'block';
+            buttonGroup.style.display = 'flex';
+            instruccionesFinalizarText.style.display = 'block';
 
             // Scroll hacia abajo
             setTimeout(() => {
@@ -581,20 +588,12 @@
             };
             localStorage.setItem('datosCompra', JSON.stringify(datosCompra));
 
-            // Mostrar botón de descargar
-            buttonGroup.style.display = 'flex';
-
             // Mostrar mensaje de éxito
             successMsg.style.display = 'block';
-            successMsg.textContent = `Gracias ${clientesData[0].nombre}! Tu compra de ${cantidad} entrada${cantidad > 1 ? 's' : ''} fue procesada. Se enviarán emails con los QRs y detalles de las entradas.`;
+            successMsg.textContent = `¡Gracias ${clientesData[0].nombre}! Tu compra de ${cantidad} entrada${cantidad > 1 ? 's' : ''} fue procesada. Se enviarán emails con los QRs y detalles de las entradas.`;
 
-            // Limpiar formulario después de 2 segundos
-            setTimeout(function() {
-                form.reset();
-                fileName.textContent = '';
-                // Ir a página de confirmación o volver
-                // window.location.href = 'index.html';
-            }, 2000);
+            // Scroll hacia arriba para ver el mensaje
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Mostrar datos de la entrada y generar campos
@@ -607,4 +606,5 @@
 
 -
 -
+
 
